@@ -20,12 +20,25 @@ public class CustomerRepositoryInMemory implements CustmerRepository {
 
 
     @Override
-    public void delateCustomer(Long id) {
-        Optional<Customer> optionalCustomer = customers.stream() //ropoczynamy wyszukiwanie customera
-                .filter(customer -> customer.getId().equals(id))
-                .findFirst(); //metoda wybiera by jeden element po wyfiltrowaniu, zwaraca nam jeden obiekt
-        Customer customer = optionalCustomer.orElseThrow(() -> new RuntimeException("No such customer")); // sprawdzam czy nie jest nullem jezli nie to zapisuje do zmiennej cutomer jezeli tak to rzucamy wyjatek
-        customers.remove(customer);// gdy program nie rzucił nam bledem no such... to tutaj przechodzimy do linkiji gdzie wywołujemy metodę remove
-
+    public void deleteCustomer(Long id) {
+     customers.remove(findCustomerById(id));// gdy program nie rzucił nam bledem no such... to tutaj przechodzimy do linkiji gdzie wywołujemy metodę remove
     }
+
+    @Override
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    @Override
+    public Customer getCustomerById(Long id) {
+        return findCustomerById(id);
+    }
+
+    private Customer findCustomerById(Long id){
+        Optional<Customer> optionalCustomer = customers.stream()
+                .filter(customer -> customer.getId().equals(id))
+                .findFirst();
+        return optionalCustomer.orElseThrow(() -> new RuntimeException("No such customer"));
+    }
+
 }
