@@ -21,7 +21,7 @@ public class CustomerRepositoryInMemory implements CustmerRepository {
 
     @Override
     public void deleteCustomer(Long id) {
-     customers.remove(findCustomerById(id));// gdy program nie rzucił nam bledem no such... to tutaj przechodzimy do linkiji gdzie wywołujemy metodę remove
+        customers.remove(findCustomerById(id));// gdy program nie rzucił nam bledem no such... to tutaj przechodzimy do linkiji gdzie wywołujemy metodę remove
     }
 
     @Override
@@ -34,7 +34,18 @@ public class CustomerRepositoryInMemory implements CustmerRepository {
         return findCustomerById(id);
     }
 
-    private Customer findCustomerById(Long id){
+    @Override
+    public Customer updateCustomer(Long id, Integer pinNumber, String mail) {
+        Customer customerFromDb = findCustomerById(id); //wyciąga "starego customer" i tworzymy kolejny obiekt
+        Customer customer = new Customer(customerFromDb.getFirstName(), customerFromDb.getLastName(),
+                customerFromDb.getNumberIdCard(), pinNumber, mail);
+        customers.remove(customerFromDb);
+        Customer customerToSave = new Customer(customerFromDb.getId(), customer);
+        customers.add(customerToSave);
+        return customerToSave;
+    }
+
+    private Customer findCustomerById(Long id) {
         Optional<Customer> optionalCustomer = customers.stream()
                 .filter(customer -> customer.getId().equals(id))
                 .findFirst();

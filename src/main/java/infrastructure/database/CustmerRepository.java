@@ -9,5 +9,7 @@ public interface CustmerRepository { //byt który po zaimplementowaniu go w klas
    void deleteCustomer(Long id);
    List<Customer> getCustomers();
    Customer getCustomerById(Long id);
+   Customer updateCustomer( Long id,Integer pinNumber, String mail );
+
 }
 

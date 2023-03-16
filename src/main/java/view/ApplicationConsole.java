@@ -24,7 +24,8 @@ public class ApplicationConsole implements ApplicationView {
                     "[0] - wyjdź z programu\n" +
                     "[1] - utwórz konto użytkownika\n" +
                     "[2] - wyświetl użytkowników\n" +
-                    "[3] - usuń użytkownika\n"
+                    "[3] - usuń użytkownika\n"+
+                    "[4] - aktualizuj użytkownika na podstawie ID\n"
             );
 
 
@@ -44,9 +45,9 @@ public class ApplicationConsole implements ApplicationView {
                     break;
 
                 case 4 :
-                    getCustomerById();
+                    updateCustomerById();
                     break;
-            
+
                 case 0:
                 default:
                     runApplication = false;
@@ -58,13 +59,13 @@ public class ApplicationConsole implements ApplicationView {
     private void saveCustomer() {
         System.out.println("podaj imię użytkownika:");
         String fistname = ScannerService.readString();
-        System.out.println("podaj hasło:");
-        String password = ScannerService.readString();
+        System.out.println("podaj nazwisko:");
+        String lastname = ScannerService.readString();
         System.out.println("podaj email:");
         String email = ScannerService.readString();
         System.out.println("nadaj pin:");
         int pinNumber = ScannerService.readInt();
-        bankAPI.saveCustomer(fistname, password, pinNumber, email);
+        bankAPI.saveCustomer(fistname, lastname, pinNumber, email);
     }
 
     private void getCustomers() {
@@ -81,6 +82,16 @@ public class ApplicationConsole implements ApplicationView {
         System.out.println("podaj id ktorego chesz pokazac");
         long id = ScannerService.readLong();
         System.out.println(bankAPI.getCustomerById(id));
+    }
+    private void updateCustomerById(){
+        System.out.println("podaj id ktorego chesz aktualizować");
+        long id = ScannerService.readLong();
+        System.out.println(bankAPI.getCustomerById(id));
+        System.out.println("podaj email:");
+        String email = ScannerService.readString();
+        System.out.println("nadaj pin:");
+        int pinNumber = ScannerService.readInt();
+        System.out.println(bankAPI.updateCustomer(id,pinNumber,email));
     }
 }
 

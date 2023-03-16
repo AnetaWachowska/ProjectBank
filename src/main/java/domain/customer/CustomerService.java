@@ -26,4 +26,7 @@ public List<Customer> getCustomers(){
 public Customer getCustomerById(Long id){
         return customerRepository.getCustomerById(id);
 }
+public Customer updateCustomer(Long id,Integer pinNumber, String mail){
+        return customerRepository.updateCustomer(id, pinNumber, mail);
+}
 }
