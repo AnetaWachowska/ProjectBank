@@ -23,5 +23,9 @@ public class BankApi {
     public Customer getCustomerById(Long id){
         return customerService.getCustomerById(id);
     }
+
+    public Customer updateCustomer(Long id,Integer pinNumber, String mail){
+        return customerService.updateCustomer(id,pinNumber, mail);
+    }
 }
 
