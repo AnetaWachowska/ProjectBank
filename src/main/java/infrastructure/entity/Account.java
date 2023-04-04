@@ -21,4 +21,36 @@ public class Account {
         this.accountType = accountType;
         this.accountNumber=accountNumber;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

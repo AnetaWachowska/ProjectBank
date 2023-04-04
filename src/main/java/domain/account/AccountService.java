@@ -27,6 +27,8 @@ public class AccountService {
         return accountRepository.creatAccount(account);
     }
 
+    // TODO: 2023-04-04  w serwisie obsługa metod z interface account repository
+    
     private String generateAccountNumber() {
         StringBuilder sb = new StringBuilder();
         sb.append(CONTROL_NUMBER);

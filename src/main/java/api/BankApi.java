@@ -27,5 +27,7 @@ public class BankApi {
     public Customer updateCustomer(Long id,Integer pinNumber, String mail){
         return customerService.updateCustomer(id,pinNumber, mail);
     }
+
+    // TODO: 2023-04-04 wystawić wszystkie metody z service w bank API 
 }
 

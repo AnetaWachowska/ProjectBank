@@ -17,6 +17,9 @@ public class ApplicationConsole implements ApplicationView {
         }
     }
 
+
+    // TODO: 2023-04-04 w application console dorobic interface  z komunikatami (podaj konto/id itp)
+
     private void showMenu() {
         boolean runApplication = true;
         while (runApplication) {
